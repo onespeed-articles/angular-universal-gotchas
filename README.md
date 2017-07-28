@@ -64,5 +64,15 @@ import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 Keep in mind API calls in your components will be called on the server and in the browser. It is highly recommended to either wait for the component to render on the browser to make the call or simply cache the api output data on the server. As expected, making multiple calls to an api makes your app sluggish on load.
 -->
 
+## ElementRef.nativeElement
+Don't manipulate the `ElementRef.nativeElement` directly. We should use the `Renderer2` to ensure that in any environment we're able to change our view.
+```typescript
+// ...
+  constructor(element: ElementRef, renderer: Renderer2) {
+    renderer.setStyle(element.nativeElement, 'font-size', 'x-large');
+  }
+// ...
+```
+
 ## Jquery & Angular
 __DO NOT USE IT__ It's that simple. If you need to query the DOM, set a ```viewChild/viewChildren```. Need to change styles, use ```ngClass/ngStyle```. Need a reference to an element, use ```ElementRef```. Jquery always introduces more problems than it fixes. This does not include libraries such as D3.
