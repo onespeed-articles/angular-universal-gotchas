@@ -97,6 +97,41 @@ In Angular we are also able to bind to the attributes using `attr`
 ```
 Keep your directives stateless as much as possible. For stateful directives, you may need to provide an attribute that reflects the corresponding property with an initial string value such as `src` in img tag. For our native element the `src` attribute is reflected as the `src` property of the element type `HTMLImageElement`.
 
+# Flickering
+Set
+`{initialNavigation: 'enabled'}` 
+in 
+`RouterModule.forRoot([], {initialNavigation: 'enabled'})`
+
+Here https://angular.io/api/router/ExtraOptions#initialNavigation
+Or here from the definition file:
+``` javascript
+/**
+ * @whatItDoes Represents an option to configure when the initial navigation is performed.
+ *
+ * @description
+ * * 'enabled' - the initial navigation starts before the root component is created.
+ * The bootstrap is blocked until the initial navigation is complete.
+ * * 'disabled' - the initial navigation is not performed. The location listener is set up before
+ * the root component gets created.
+ * * 'legacy_enabled'- the initial navigation starts after the root component has been created.
+ * The bootstrap is not blocked until the initial navigation is complete. @deprecated
+ * * 'legacy_disabled'- the initial navigation is not performed. The location listener is set up
+ * after @deprecated
+ * the root component gets created.
+ * * `true` - same as 'legacy_enabled'. @deprecated since v4
+ * * `false` - same as 'legacy_disabled'. @deprecated since v4
+ *
+ * The 'enabled' option should be used for applications unless there is a reason to have
+ * more control over when the router starts its initial navigation due to some complex
+ * initialization logic. In this case, 'disabled' should be used.
+ *
+ * The 'legacy_enabled' and 'legacy_disabled' should not be used for new applications.
+ *
+ * @experimental
+ */
+export declare type InitialNavigation = true | false | 'enabled' | 'disabled' | 'legacy_enabled' | 'legacy_disabled';
+```
 
 ## Jquery & Angular
 __DO NOT USE IT__ It's that simple. If you need to query the DOM, set a ```viewChild/viewChildren```. Need to change styles, use ```ngClass/ngStyle```. Need a reference to an element, use ```ElementRef```. Jquery always introduces more problems than it fixes. This does not include libraries such as D3.
