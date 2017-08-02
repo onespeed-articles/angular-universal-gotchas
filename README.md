@@ -97,7 +97,7 @@ In Angular we are also able to bind to the attributes using `attr`
 ```
 Keep your directives stateless as much as possible. For stateful directives, you may need to provide an attribute that reflects the corresponding property with an initial string value such as `src` in img tag. For our native element the `src` attribute is reflected as the `src` property of the element type `HTMLImageElement`.
 
-# Flickering
+# Flickering and Lazy Routes
 Set
 `{initialNavigation: 'enabled'}` 
 in 
